@@ -147,7 +147,7 @@ with open(budget_csv_path) as csvfile:
 print(f"Greatest Decrease in Profits: {Dateofmin} (${Minvalue})")
 
 #Specify the file to write to
-output_path = os.path.join("analysis", "new.csv")
+output_path = os.path.join("analysis", "Financial_Analysis.csv")
 
 # Open the file using "write" mode. Specify the variable to hold the contents
 with open(output_path, 'w', newline="") as csvfile:

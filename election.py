@@ -86,5 +86,46 @@ print(f"{candidates[1]}: {secondpercent}% ({totalsecond})")
 print(f"{candidates[2]}: {thirdpercent}% ({totalthird})")
 print(f"{candidates[3]}: {fourthpercent}% ({totalfourth})")
 
+print("-----------------------")
+
+listoftotals = [totalfirst,totalsecond,totalthird,totalfourth]
+winner = ""
+
+#print(listoftotals)
+
+if max(listoftotals) == totalfirst:
+    winner = candidates[0]
+if max(listoftotals) == totalsecond:
+    winner = candidates[1]
+if max(listoftotals) == totalthird:
+    winner = candidates[2]
+if max(listoftotals) == totalfourth:
+    winner = candidates[3]
+
+print(f"Winner: {winner}")
+print("-----------------------")   
+
+#output file
+
+#Specify the file to write to
+output_path = os.path.join("analysis", "Election_Results.csv")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w', newline="") as csvfile:
+
+    # Initialize csv.writer
+    csvwriter = csv.writer(csvfile, delimiter=',')
+
+    # Write the rows
+    csvwriter.writerow(["Election Results"])
+    csvwriter.writerow(["-----------------------"])
+    csvwriter.writerow([f"Total Votes: {totalvotes}"])
+    csvwriter.writerow(["-----------------------"])
+    csvwriter.writerow([f"{candidates[0]}: {firstpercent}% ({totalfirst})"])
+    csvwriter.writerow([f"{candidates[1]}: {secondpercent}% ({totalsecond})"])
+    csvwriter.writerow([f"{candidates[2]}: {thirdpercent}% ({totalthird})"])
+    csvwriter.writerow([f"{candidates[3]}: {fourthpercent}% ({totalfourth})"])
+    csvwriter.writerow([f"Winner: {winner}"])
+    csvwriter.writerow(["-----------------------"])   
 
 
