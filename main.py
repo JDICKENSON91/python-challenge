@@ -3,10 +3,10 @@
 import os
 import csv
 
-#Set Variables
-totalmonths = -1
-totalprofitloss = 0
+print("Financial Analysis")
 
+#set variable for months (ignore header row)
+totalmonths = -1
 
 #Set File Path
 budget_csv_path = os.path.join("Resources", "budget_data.csv")
@@ -19,26 +19,131 @@ with open(budget_csv_path) as csvfile:
     for row in budgetcsvreader:
         #Accumulate the months
         totalmonths = int(totalmonths+1)
-    for row in budgetcsvreader:
-        print ("a")
-        #Accumulate the total
-        #pl = row[1]
-        #totalprofitloss = float(totalprofitloss + pl)
-
-print (totalmonths)
-print (totalprofitloss)
         
+print("----------------------------------------")   
+print(f"Total Months: {totalmonths}")
 
 
-#The total number of months included in the dataset
+#Set File Path
+budget_csv_path = os.path.join("Resources", "budget_data.csv")
+##print (budget_csv_path)
+with open(budget_csv_path) as csvfile:
+    budgetcsvreader = csv.reader(csvfile, delimiter=",")
+    #Skip first line
+    next(budgetcsvreader)
+    pltotal = 0.00
+    #Search through each row
+    for row in budgetcsvreader:
+        #add profit amount to total
+        pltotal = (float(row[1]) + pltotal)
+         
+print(f"Total: ${pltotal}")
+
+#Find Last Value
+
+#Set File Path
+budget_csv_path = os.path.join("Resources", "budget_data.csv")
+LASTvalue = 0.00
+##print (budget_csv_path)
+with open(budget_csv_path) as csvfile:
+    budgetcsvreader = csv.reader(csvfile, delimiter=",")
+    #Skip first line
+    next(budgetcsvreader)
+    #Search through each row
+    for row in budgetcsvreader:
+        #Find Last Value
+        LASTvalue = (float(row[1]))
+
+#Find First Value
+
+#Set File Path
+budget_csv_path = os.path.join("Resources", "budget_data.csv")
+FIRSTvalue = 0.00
+SS = 0
+##print (budget_csv_path)
+with open(budget_csv_path) as csvfile:
+    budgetcsvreader = csv.reader(csvfile, delimiter=",")
+    #Skip first line
+    next(budgetcsvreader)
+    #Search through each row
+    for row in budgetcsvreader:
+        SS == 0
+        #Find Last Value
+        FIRSTvalue = (float(row[1]))
+        if SS == 0:
+            break
+    
+#print(FIRSTvalue)
+#print(LASTvalue)
+
+avdifftotal = (LASTvalue - FIRSTvalue) /(totalmonths  - 1)
+print(f"Total: ${avdifftotal}")
+
+#Set File Path
+budget_csv_path = os.path.join("Resources", "budget_data.csv")
+##print (budget_csv_path)
+
+# Set List
+
+#Scan through list, log prev value, current value and difference. If difference is bigger then last difference  overide current and prev with new values.
 
 
-#The net total amount of "Profit/Losses" over the entire period
+Maxvalue = 0.00
+Dateofmax = ""
+MaxPH = 0.00
+lastvalue = 0.00
+currentvalue = 0.00
+maxchange = 0.00
+
+with open(budget_csv_path) as csvfile:
+    budgetcsvreader = csv.reader(csvfile, delimiter=",")
+    #Skip first line
+    next(budgetcsvreader)
+    #Search through each row
+    for row in budgetcsvreader:
+        #see if value is higher than previous value
+        lastvalue = currentvalue
+        currentvalue = (float(row[1]))
+        MaxPH = currentvalue - lastvalue
+        if (Maxvalue < MaxPH):
+            Dateofmax = (row[0])
+            Maxvalue = MaxPH
+            lastvalue = (float(row[1]))
+
+print(f"Greatest Increase in Profits: {Dateofmax} (${Maxvalue})")
+
+#Set File Path
+budget_csv_path = os.path.join("Resources", "budget_data.csv")
+##print (budget_csv_path)
+
+# Set List
+
+#Scan through list, log prev value, current value and difference. If difference is bigger then last difference  overide current and prev with new values.
 
 
-#The average of the changes in "Profit/Losses" over the entire period
+Minvalue = 0.00
+Dateofmin = ""
+MinPH = 0.00
+lastvalue = 0.00
+currentvalue = 0.00
+minchange = 0.00
+
+with open(budget_csv_path) as csvfile:
+    budgetcsvreader = csv.reader(csvfile, delimiter=",")
+    #Skip first line
+    next(budgetcsvreader)
+    #Search through each row
+    for row in budgetcsvreader:
+        #see if value is higher than previous value
+        lastvalue = currentvalue
+        currentvalue = (float(row[1]))
+        MinPH = currentvalue - lastvalue
+        if (Minvalue > MinPH):
+            Dateofmin = (row[0])
+            Minvalue = MinPH
+            lastvalue = (float(row[1]))
+
+print(f"Greatest Decrease in Profits: {Dateofmin} (${Minvalue})")
 
 
-#The greatest increase in profits (date and amount) over the entire period
 
-#The greatest decrease in losses (date and amount) over the entire period
